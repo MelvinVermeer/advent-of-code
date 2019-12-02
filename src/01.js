@@ -10,6 +10,8 @@
 // as if it requires zero fuel; the remaining mass, if any, is instead handled
 // by wishing really hard, which has no mass and is outside the scope of this calculation.
 
+const sum = (a, b) => a + b;
+
 const calculateFuel = (mass) =>
   Math.max(Math.floor(mass / 3) - 2, 0);
 
@@ -21,8 +23,8 @@ const calculateFuelPlusExtra = (mass) => {
   return 0;
 };
 
-const calculateFuelForMultipleModules = (moduleMasses) =>
-  moduleMasses.map(calculateFuelPlusExtra).reduce((a, b) => a + b);
+const calculateFuelForMultipleModules = (masses) =>
+  masses.map(calculateFuelPlusExtra).reduce(sum);
 
 module.exports = {
   calculateFuelPlusExtra,
