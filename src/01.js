@@ -14,16 +14,11 @@ const calculateFuel = (mass) =>
   Math.max(Math.floor(mass / 3) - 2, 0);
 
 const calculateFuelPlusExtra = (mass) => {
-  const moduleFuel = calculateFuel(mass);
-  let totalFuel = moduleFuel;
-  let extraFuel = moduleFuel;
-
-  do {
-    extraFuel = calculateFuel(extraFuel);
-    totalFuel += extraFuel;
-  } while (extraFuel > 0);
-
-  return totalFuel;
+  const fuel = calculateFuel(mass);
+  if (fuel > 0) {
+    return fuel + calculateFuelPlusExtra(fuel);
+  }
+  return 0;
 };
 
 const calculateFuelForMultipleModules = (moduleMasses) =>
