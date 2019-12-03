@@ -1,4 +1,4 @@
-const { intcode, restore1202 } = require('../src/02');
+const { intcode, findNounVerb, restore1202 } = require('../src/02');
 const data = require('./02.data');
 
 describe('Day 2: 1202 Program Alarm', () => {
@@ -20,6 +20,14 @@ describe('Day 2: 1202 Program Alarm', () => {
 
     it('answer -> 5110675', () => {
         expect(intcode(restore1202(data))[0]).toEqual(5110675);
+    });
+
+    it('answer day 2 -> 4847', () => {
+        const result = findNounVerb(data, 19690720);
+        const [noun, verb] = result;
+        const answer = 100 * noun + verb;
+
+        expect(answer).toEqual(4847);
     });
 });
 

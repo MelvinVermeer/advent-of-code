@@ -31,8 +31,24 @@ const intcode = (program) => {
     return newProgram;
 };
 
+const findNounVerb = (program, outputToFind) => {
+    for (let noun = 0; noun < 100; noun++) {
+        for (let verb = 0; verb < 100; verb++) {
+            const copy = [...program];
+            copy[1] = noun;
+            copy[2] = verb;
+            if (intcode(copy)[0] === outputToFind) {
+                return [noun, verb];
+            }
+        }
+    }
+
+    throw new Error('not found');
+};
+
 module.exports = {
     intcode,
+    findNounVerb,
     restore1202,
 };
 

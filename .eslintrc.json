@@ -19,6 +19,7 @@
         "implicit-arrow-linebreak": "off",
         "indent": "off",
         "linebreak-style": "off",
+        "no-plusplus": "off",
         "no-multiple-empty-lines": [
             "error",
             {
