@@ -1,0 +1,25 @@
+const { intcode, restore1202 } = require('../src/02');
+const data = require('./02.data');
+
+describe('Day 2: 1202 Program Alarm', () => {
+    it('1,0,0,0,99 -> 2,0,0,0,99', () => {
+        expect(intcode([1, 0, 0, 0, 99])).toEqual([2, 0, 0, 0, 99]);
+    });
+
+    it('2,3,0,3,99 -> 2,3,0,6,99', () => {
+        expect(intcode([2, 3, 0, 3, 99])).toEqual([2, 3, 0, 6, 99]);
+    });
+
+    it('2,4,4,5,99,0 -> 2,4,4,5,99,9801', () => {
+        expect(intcode([2, 4, 4, 5, 99, 0])).toEqual([2, 4, 4, 5, 99, 9801]);
+    });
+
+    it('1,1,1,4,99,5,6,0,99  -> 30,1,1,4,2,5,6,0,99', () => {
+        expect(intcode([1, 1, 1, 4, 99, 5, 6, 0, 99])).toEqual([30, 1, 1, 4, 2, 5, 6, 0, 99]);
+    });
+
+    it('answer -> 5110675', () => {
+        expect(intcode(restore1202(data))[0]).toEqual(5110675);
+    });
+});
+
