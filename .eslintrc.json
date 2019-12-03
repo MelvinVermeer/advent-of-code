@@ -20,6 +20,8 @@
         "indent": "off",
         "linebreak-style": "off",
         "no-plusplus": "off",
+        "no-console": "off",
+        "no-restricted-syntax": "off",
         "no-multiple-empty-lines": [
             "error",
             {
