@@ -8,14 +8,17 @@ const hasDecreasingDigits = (password) => {
     return false;
 };
 
-const hasAdjacentDoubleDigit = (password) => {
-    for (let i = 1; i < password.length; i++) {
-        const previousDigit = Number(password[i - 1]);
-        if (Number(password[i]) === previousDigit) {
-            return true;
-        }
+const splitIntoGroupsOfSameDigits = (password) => {
+    const groups = {};
+    for (const char of password) {
+        groups[char] = (groups[char] || '') + char;
     }
-    return false;
+    return Object.values(groups);
+};
+
+const hasAdjacentDoubleDigit = (password) => {
+    const groups = splitIntoGroupsOfSameDigits(password);
+    return groups.some((group) => group.length === 2);
 };
 
 const isPossiblePassword = (password) => {
@@ -44,4 +47,3 @@ const createNumberArrayForRange = (range) => {
 };
 
 module.exports = { isPossiblePassword, createNumberArrayForRange };
-

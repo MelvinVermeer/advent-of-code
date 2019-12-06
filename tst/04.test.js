@@ -1,10 +1,6 @@
 const { isPossiblePassword, createNumberArrayForRange } = require('../src/04-secure-container');
 
 describe('Day 4: Secure Container', () => {
-    it('111111 true', () => {
-        expect(isPossiblePassword('111111')).toBeTruthy();
-    });
-
     it('decreasing digits false', () => {
         expect(isPossiblePassword('223450')).toBeFalsy();
     });
@@ -21,9 +17,21 @@ describe('Day 4: Secure Container', () => {
         expect(isPossiblePassword('123789')).toBeFalsy();
     });
 
-    it('answer => 1079', () => {
+    it('adjacent double digit true', () => {
+        expect(isPossiblePassword('112233')).toBeTruthy();
+    });
+
+    it('adjacent double digit true, 22', () => {
+        expect(isPossiblePassword('111122')).toBeTruthy();
+    });
+
+    it('adjacent double digit shoud not be part of larger group', () => {
+        expect(isPossiblePassword('123444')).toBeFalsy();
+    });
+
+    it('answer => 699', () => {
         const range = '245318-765747';
         const passwords = createNumberArrayForRange(range);
-        expect(passwords.filter(isPossiblePassword).length).toEqual(1079);
+        expect(passwords.filter(isPossiblePassword).length).toEqual(699);
     });
 });
