@@ -50,7 +50,7 @@ const getMinimumStepDistance = (wire1, wire2) => {
     const distances = intersectionBy(path1, path2, coordinateToString)
         .filter(([x, y]) => x !== 0 && y !== 0)
         .map((coordinate) =>
-            getStepDistance(path1, coordinate) + getStepDistance(path2, coordinate),);
+            getStepDistance(path1, coordinate) + getStepDistance(path2, coordinate));
 
     return Math.min(...distances);
 };

@@ -51,4 +51,3 @@ module.exports = {
     findNounVerb,
     restore1202,
 };
-

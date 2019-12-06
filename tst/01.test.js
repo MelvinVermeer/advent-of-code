@@ -1,4 +1,4 @@
-const { calculateFuelPlusExtra, calculateFuelForMultipleModules } = require('../src/01');
+const { calculateFuelPlusExtra, calculateFuelForMultipleModules } = require('../src/01-the-tyranny-of-the-rocket-equation');
 const data = require('./01.data');
 
 describe('01 - The Tyranny of the Rocket Equation', () => {

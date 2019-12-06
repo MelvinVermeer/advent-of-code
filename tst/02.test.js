@@ -1,4 +1,4 @@
-const { intcode, findNounVerb, restore1202 } = require('../src/02');
+const { intcode, findNounVerb, restore1202 } = require('../src/02-1202-program-alarm');
 const data = require('./02.data');
 
 describe('Day 2: 1202 Program Alarm', () => {
