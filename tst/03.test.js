@@ -1,4 +1,4 @@
-const { getDistanceToClosestIntersection } = require('../src/03');
+const { getDistanceToClosestIntersection, getMinimumStepDistance } = require('../src/03');
 const data = require('./03.data');
 
 describe('Day 3: Crossed Wires', () => {
@@ -24,5 +24,21 @@ describe('Day 3: Crossed Wires', () => {
 
     it('answer => ?', () => {
         expect(getDistanceToClosestIntersection(data.wire1, data.wire2)).toEqual(303);
+    });
+
+    it('step distance sample1', () => {
+        const wire1 = ['R75', 'D30', 'R83', 'U83', 'L12', 'D49', 'R71', 'U7', 'L72'];
+        const wire2 = ['U62', 'R66', 'U55', 'R34', 'D71', 'R55', 'D58', 'R83'];
+        expect(getMinimumStepDistance(wire1, wire2)).toEqual(610);
+    });
+
+    it('step distance sample2', () => {
+        const wire1 = ['R98', 'U47', 'R26', 'D63', 'R33', 'U87', 'L62', 'D20', 'R33', 'U53', 'R51'];
+        const wire2 = ['U98', 'R91', 'D20', 'R16', 'D67', 'R40', 'U7', 'R15', 'U6', 'R7'];
+        expect(getMinimumStepDistance(wire1, wire2)).toEqual(410);
+    });
+
+    it('answer (part 2) => ?', () => {
+        expect(getMinimumStepDistance(data.wire1, data.wire2)).toEqual(11222);
     });
 });

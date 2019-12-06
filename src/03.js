@@ -39,6 +39,22 @@ const getDistanceToClosestIntersection = (wire1, wire2) => {
     return Math.min(...distances);
 };
 
+const getStepDistance = (path, coordinate) => path
+    .map(coordinateToString)
+    .indexOf(coordinateToString(coordinate));
+
+const getMinimumStepDistance = (wire1, wire2) => {
+    const path1 = getPath(wire1);
+    const path2 = getPath(wire2);
+
+    const distances = intersectionBy(path1, path2, coordinateToString)
+        .filter(([x, y]) => x !== 0 && y !== 0)
+        .map((coordinate) =>
+            getStepDistance(path1, coordinate) + getStepDistance(path2, coordinate),);
+
+    return Math.min(...distances);
+};
+
 module.exports = {
-    getDistanceToClosestIntersection,
+    getDistanceToClosestIntersection, getMinimumStepDistance,
 };
