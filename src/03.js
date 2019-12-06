@@ -1,26 +1,44 @@
-/* eslint-disable no-console */
-const getManhattanDistance = (x1, y1, x2, y2) => Math.abs(x1 - x2) + Math.abs(y1 - y2);
+const intersectionBy = require('lodash/intersectionBy');
 
-const getPath = (wire) => {
-    // [[x,y], [x,y]]
+const getManhattanDistance = ([x1, y1], [x2, y2]) => Math.abs(x1 - x2) + Math.abs(y1 - y2);
+const getSteps = (section) => Number(section.substr(1));
+const getDirection = (section) => section[0];
+const coordinateToString = ([x, y]) => `${x},${y}`;
+
+const directions = {
+    U: ([x, y]) => [x, y + 1],
+    R: ([x, y]) => [x + 1, y],
+    D: ([x, y]) => [x, y - 1],
+    L: ([x, y]) => [x - 1, y],
 };
 
-const getIntersections = (coords1, coords2) => {
-    // [[x,y], [x,y]]
+const getPath = (wire) => {
+    const path = [[0, 0]];
+
+    for (const section of wire) {
+        const length = getSteps(section);
+
+        for (let index = 0; index < length; index++) {
+            const lastCoordinate = path[path.length - 1];
+            const nextCoordinate = directions[getDirection(section)](lastCoordinate);
+            path.push(nextCoordinate);
+        }
+    }
+
+    return path;
 };
 
 const getDistanceToClosestIntersection = (wire1, wire2) => {
-    const coords1 = getPath(wire1);
-    const coords2 = getPath(wire2);
-    const intersections = getIntersections(coords1, coords2);
-    const distances = intersections.map(getManhattanDistance(0, 0, ...intersections));
+    const path1 = getPath(wire1);
+    const path2 = getPath(wire2);
+
+    const distances = intersectionBy(path1, path2, coordinateToString)
+        .map((coordinate) => getManhattanDistance([0, 0], coordinate))
+        .filter((x) => x > 0);
+
     return Math.min(...distances);
 };
-
-const wire1 = ['R8', 'U5', 'L5', 'D3'];
-const wire2 = ['U7', 'R6', 'D4', 'L4'];
 
 module.exports = {
     getDistanceToClosestIntersection,
 };
-
