@@ -1,6 +1,3 @@
-
-const data = require('../tst/05.data');
-
 const getValue = (program, position, mode) => {
     if (mode === 1) {
         // MODE === 1  immediate mode
@@ -11,9 +8,9 @@ const getValue = (program, position, mode) => {
     return program[program[position]];
 };
 
-const getParameterMode = (value, position) => {
+const getParameterMode = (instruction, position) => {
     // 1002 -> [0,1]
-    const modes = value
+    const modes = instruction
         .toString()
         .split('')
         .reverse()
@@ -23,9 +20,8 @@ const getParameterMode = (value, position) => {
     return modes[position] || 0;
 };
 
-const intcodeV2 = (program) => {
+const intcodeV2 = (program, systemId) => {
     const newProgram = [...program];
-    const input = 1;
     let output = -1;
     for (let i = 0; i < newProgram.length;) {
         const instruction = newProgram[i];
@@ -51,13 +47,47 @@ const intcodeV2 = (program) => {
         }
 
         if (opcode === 3) {
-            newProgram[newProgram[i + 1]] = input;
+            newProgram[newProgram[i + 1]] = systemId;
             i += 2;
         }
 
         if (opcode === 4) {
-            output = newProgram[newProgram[i + 1]];
+            output = value1;
             i += 2;
+        }
+
+        if (opcode === 5) {
+            if (value1 !== 0) {
+                i = value2;
+            } else {
+                i += 3;
+            }
+        }
+
+        if (opcode === 6) {
+            if (value1 === 0) {
+                i = value2;
+            } else {
+                i += 3;
+            }
+        }
+
+        if (opcode === 7) {
+            if (value1 < value2) {
+                newProgram[newPosition] = 1;
+            } else {
+                newProgram[newPosition] = 0;
+            }
+            i += 4;
+        }
+
+        if (opcode === 8) {
+            if (value1 === value2) {
+                newProgram[newPosition] = 1;
+            } else {
+                newProgram[newPosition] = 0;
+            }
+            i += 4;
         }
     }
 
@@ -67,5 +97,3 @@ const intcodeV2 = (program) => {
 module.exports = {
     intcodeV2,
 };
-
-intcodeV2(data);
