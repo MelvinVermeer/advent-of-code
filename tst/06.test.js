@@ -1,4 +1,4 @@
-const { getOrbitsCount } = require('../src/06-universal-orbit-map');
+const { getOrbitsCount, findShortestPathToCommonParent } = require('../src/06-universal-orbit-map');
 const data = require('./06.data');
 
 describe('Day 6: Universal Orbit Map', () => {
@@ -9,6 +9,10 @@ describe('Day 6: Universal Orbit Map', () => {
 
     it('answer', () => {
         expect(getOrbitsCount(data)).toEqual(344238);
+    });
+
+    it('answer part 2', () => {
+        expect(findShortestPathToCommonParent(data, 'YOU', 'SAN')).toEqual(436);
     });
 });
 
