@@ -1,4 +1,5 @@
 const { findMaxThrusterSignal } = require('../src/07-amplification-circuit');
+const data = require('./07.data');
 
 describe('findMaxThrusterSignal', () => {
     const sample1 = [3, 15, 3, 16, 1002, 16, 10, 16, 1, 16, 15, 15, 4, 15, 99, 0, 0];
@@ -20,6 +21,11 @@ describe('findMaxThrusterSignal', () => {
     it('should be 65210 for sample 3', () => {
         const maxThrusterSignal = findMaxThrusterSignal(sample3);
         expect(maxThrusterSignal).toEqual(65210);
+    });
+
+    it('answer => ?', () => {
+        const maxThrusterSignal = findMaxThrusterSignal(data);
+        expect(maxThrusterSignal).toEqual(206580);
     });
 });
 
