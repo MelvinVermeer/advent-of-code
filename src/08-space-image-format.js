@@ -1,6 +1,6 @@
 const is0 = (x) => x === 0;
 const is1 = (x) => x === 1;
-const is2 = (x) => x === 2;
+const isTransparent = (x) => x === 2;
 const layerSorter = (a, b) => a.filter(is0).length - b.filter(is0).length;
 
 function splitByLength(array, length) {
@@ -15,7 +15,7 @@ function splitByLength(array, length) {
 
 function getChecksumForLayer(layer) {
     const ones = layer.filter(is1).length;
-    const twos = layer.filter(is2).length;
+    const twos = layer.filter(isTransparent).length;
 
     return ones * twos;
 }
@@ -29,7 +29,18 @@ const getImageChecksum = (image, width, height) => {
     return checksum;
 };
 
+const mergeLayers = (topLayer, lowerLayer) =>
+    topLayer.map((value, index) => (isTransparent(value) ? lowerLayer[index] : value));
+
+const decodeImage = (image, width, height) => {
+    const array = Array.from(image).map(Number);
+    const layers = splitByLength(array, width * height);
+    return layers.reduce(mergeLayers);
+};
+
 module.exports = {
+    splitByLength,
+    decodeImage,
     getImageChecksum,
 };
 
