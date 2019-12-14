@@ -1,5 +1,5 @@
 const { intcode, findNounVerb, restore1202 } = require('../src/02-1202-program-alarm');
-const data = require('./02.data');
+const data = require('../data/02.data');
 
 describe('Day 2: 1202 Program Alarm', () => {
     it('1,0,0,0,99 -> 2,0,0,0,99', () => {

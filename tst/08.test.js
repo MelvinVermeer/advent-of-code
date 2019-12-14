@@ -1,5 +1,5 @@
 const { getImageChecksum, decodeImage, splitByLength } = require('../src/08-space-image-format');
-const data = require('./08.data');
+const data = require('../data/08.data');
 
 describe('getImageChecksum', () => {
     const sample1 = '123456789012';

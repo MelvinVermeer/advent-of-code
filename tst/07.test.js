@@ -1,5 +1,5 @@
 const { findMaxThrusterSignal } = require('../src/07-amplification-circuit');
-const data = require('./07.data');
+const data = require('../data/07.data');
 
 describe('findMaxThrusterSignal', () => {
     const sample1 = [3, 15, 3, 16, 1002, 16, 10, 16, 1, 16, 15, 15, 4, 15, 99, 0, 0];

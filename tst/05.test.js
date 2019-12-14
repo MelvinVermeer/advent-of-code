@@ -1,5 +1,5 @@
 const { intcodeV2 } = require('../src/05-sunny-with-a-chance-of-asteroids');
-const data = require('./05.data');
+const data = require('../data/05.data');
 
 describe('Day 5: Sunny with a Chance of Asteroids', () => {
     it('answer part 1', () => {

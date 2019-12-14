@@ -1,5 +1,5 @@
 const { getOrbitsCount, findShortestPathToCommonParent } = require('../src/06-universal-orbit-map');
-const data = require('./06.data');
+const data = require('../data/06.data');
 
 describe('Day 6: Universal Orbit Map', () => {
     it('sample 1', () => {

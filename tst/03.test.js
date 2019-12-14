@@ -1,5 +1,5 @@
 const { getDistanceToClosestIntersection, getMinimumStepDistance } = require('../src/03-crossed-wires');
-const data = require('./03.data');
+const data = require('../data/03.data');
 
 describe('Day 3: Crossed Wires', () => {
     it('sample1', () => {
